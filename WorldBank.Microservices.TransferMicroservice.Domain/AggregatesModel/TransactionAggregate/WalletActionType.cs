@@ -2,7 +2,7 @@
 {
     public enum WalletActionType
     {
-        Credit,
-        Debit
+        Debit = 0,
+        Credit = 1
     }
 }

@@ -10,11 +10,11 @@
         <Label Text="Welcome to WorldBank" 
            HorizontalOptions="Center"
            VerticalOptions="Start" />
-        
         <Button Text="Verificar Saldo" Clicked="Button_Clicked" />
-        <Label Text="R$0" x:Name="LabelSaldo"/>
         <Button Text="Transferir" />
         <Button Text="Sair" />
+        <StackLayout x:Name="StackLayoutStatement">
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>

@@ -9,11 +9,16 @@ namespace WorldBank.Microservices.TransactionMicroservice.Domain.AggregatesModel
     {
         public Guid Id { get; set; }
         public DateTime DateTime { get; set; }
-        public IEnumerable<WalletAction> Actions { get; set; }
+        public ICollection<WalletAction> Actions { get; set; }
+
+        public Transaction()
+        {
+            Actions = new List<WalletAction>();
+        }
 
         public void AddAction(WalletAction action)
         {
-            Actions.Append(action);
+            Actions.Add(action);
         }
     }
 }

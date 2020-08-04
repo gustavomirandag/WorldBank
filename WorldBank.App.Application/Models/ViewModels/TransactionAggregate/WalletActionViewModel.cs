@@ -3,7 +3,7 @@ using WorldBank.App.Application.Models.ViewModels.WalletAggregate;
 
 namespace WorldBank.App.Application.Models.ViewModels.TransactionAggregate
 {
-    public class WalletAction
+    public class WalletActionViewModel
     {
         public Guid WalletId { get; set; }
         public AmountViewModel Amount { get; set; }

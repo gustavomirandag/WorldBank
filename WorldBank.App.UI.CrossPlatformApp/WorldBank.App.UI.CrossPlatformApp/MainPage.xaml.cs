@@ -18,9 +18,20 @@ namespace WorldBank.App.UI.CrossPlatformApp
             InitializeComponent();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            LabelSaldo.Text = "R$5.000";
+            var statement = await App.AppService.GetWalletStatementAsync(Guid.NewGuid());
+
+            foreach(var transaction in statement)
+            {
+                Label destinyWallet = new Label
+                {
+                    Text = $"Id={transaction.Id} | {transaction.DateTime}"
+                };
+
+                StackLayoutStatement.Children.Add(destinyWallet);
+            }
+
         }
     }
 }
