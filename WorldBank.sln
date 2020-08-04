@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{7D184D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{F217DBEC-B513-45E7-A0D9-1DBF8319D4F5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TransferMicroservice", "TransferMicroservice", "{2F34A955-04A7-4156-A6F6-D6624B907FA9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TransactionMicroservice", "TransactionMicroservice", "{2F34A955-04A7-4156-A6F6-D6624B907FA9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IamMicroservice", "IamMicroservice", "{9D192FCC-6F9F-4747-8773-27F032BCC3C3}"
 EndProject
@@ -51,7 +51,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - Infrastructure", "{7D776F68-7ACF-4917-902C-6B77DCF2C66F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldBank.Microservices.TransferMicroservice.Domain", "WorldBank.Microservices.TransferMicroservice.Domain\WorldBank.Microservices.TransferMicroservice.Domain.csproj", "{EB122BFF-ADCE-48E2-BAB0-EFE3FD9C61AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldBank.Microservices.TransactionMicroservice.Domain", "WorldBank.Microservices.TransferMicroservice.Domain\WorldBank.Microservices.TransactionMicroservice.Domain.csproj", "{EB122BFF-ADCE-48E2-BAB0-EFE3FD9C61AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldBank.App.UI.CrossPlatformApp.UWP", "WorldBank.App.UI.CrossPlatformApp\WorldBank.App.UI.CrossPlatformApp.UWP\WorldBank.App.UI.CrossPlatformApp.UWP.csproj", "{43E80163-AE9B-49A8-9E83-BCAD79DECDDF}"
 EndProject
@@ -59,7 +59,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldBank.App.UI.CrossPlatf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldBank.App.UI.CrossPlatformApp.iOS", "WorldBank.App.UI.CrossPlatformApp\WorldBank.App.UI.CrossPlatformApp.iOS\WorldBank.App.UI.CrossPlatformApp.iOS.csproj", "{24F6C6B8-22B4-406C-83C6-334E40D95FCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldBank.App.UI.CrossPlatformApp", "WorldBank.App.UI.CrossPlatformApp\WorldBank.App.UI.CrossPlatformApp\WorldBank.App.UI.CrossPlatformApp.csproj", "{D81A5670-F0FD-4724-A0DA-A0A49D6B8376}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldBank.App.UI.CrossPlatformApp", "WorldBank.App.UI.CrossPlatformApp\WorldBank.App.UI.CrossPlatformApp\WorldBank.App.UI.CrossPlatformApp.csproj", "{D81A5670-F0FD-4724-A0DA-A0A49D6B8376}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldBank.App.Application", "WorldBank.App.Application\WorldBank.App.Application.csproj", "{A6D8AF3C-4440-4539-951B-7D57E9E47787}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -249,6 +251,30 @@ Global
 		{D81A5670-F0FD-4724-A0DA-A0A49D6B8376}.Release|x64.Build.0 = Release|Any CPU
 		{D81A5670-F0FD-4724-A0DA-A0A49D6B8376}.Release|x86.ActiveCfg = Release|Any CPU
 		{D81A5670-F0FD-4724-A0DA-A0A49D6B8376}.Release|x86.Build.0 = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|ARM.Build.0 = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|x64.Build.0 = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Debug|x86.Build.0 = Debug|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|ARM.Build.0 = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|iPhone.Build.0 = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|x64.ActiveCfg = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|x64.Build.0 = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|x86.ActiveCfg = Release|Any CPU
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -280,6 +306,7 @@ Global
 		{496B9E88-FA39-46FD-B3AF-008BD7874185} = {CB3ECC3C-BB52-4813-B603-D1C6E7EE2570}
 		{24F6C6B8-22B4-406C-83C6-334E40D95FCE} = {CB3ECC3C-BB52-4813-B603-D1C6E7EE2570}
 		{D81A5670-F0FD-4724-A0DA-A0A49D6B8376} = {CB3ECC3C-BB52-4813-B603-D1C6E7EE2570}
+		{A6D8AF3C-4440-4539-951B-7D57E9E47787} = {F678CE20-986E-47EF-8E93-FBED728A3DA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF010FE8-BCBA-4008-AEBA-7F1FC5D3DE34}

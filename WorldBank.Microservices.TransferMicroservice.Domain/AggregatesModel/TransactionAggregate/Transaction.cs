@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using WorldBank.Microservices.WalletMicroservice.Domain.AggregatesModel.WalletAggregate;
+using System.Linq;
+using WorldBank.Microservices.TransactionMicroservice.Domain.AggregatesModel.TransactionAggregate;
 
-namespace WorldBank.Microservices.TransferMicroservice.Domain.AggregatesModel.TransferAggregate
+namespace WorldBank.Microservices.TransactionMicroservice.Domain.AggregatesModel.TransferAggregate
 {
-    public abstract class Transaction
+    public class Transaction
     {
         public Guid Id { get; set; }
         public DateTime DateTime { get; set; }
-        public IEnumerable<Action> Action { get; set; }
+        public IEnumerable<WalletAction> Actions { get; set; }
+
+        public void AddAction(WalletAction action)
+        {
+            Actions.Append(action);
+        }
     }
 }
