@@ -276,6 +276,48 @@ namespace WorldBank.Microservices.IamMicroservice.Admin.Api.Controllers
 
             return Ok(usersDto);
         }
+
+        public class UserPasswordDto
+        {
+            public TUserDto user { get; set; }
+            public UserChangePasswordApiDto<TKey> password { get; set; }
+        }
+
+        /// <summary>
+        /// Cria um usuário com o Role de AccountHolder
+        /// AccountHolder Role Id = 125ccf16-efb6-4b1f-bd22-0590f9cf9ab9
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPost("/api/UsersAndRoles")]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<TUserDto>> PostAccountHolder([FromBody] UserPasswordDto userPasswordDto)
+        {
+            if (!EqualityComparer<TKey>.Default.Equals(userPasswordDto.user.Id, default))
+            {
+                return BadRequest(_errorResources.CannotSetId());
+            }
+
+            var (identityResult, userId) = await _identityService.CreateUserAsync(userPasswordDto.user);
+            var createdUser = await _identityService.GetUserAsync(userId.ToString());
+
+            //Add Role to the new User
+            var role = await _identityService.GetRoleAsync("125ccf16-efb6-4b1f-bd22-0590f9cf9ab9");
+            var userAndRole = new UserRoleApiDto<TKey>();
+            userAndRole.UserId = createdUser.Id;
+            userAndRole.RoleId = role.Id;
+
+            var userRolesDto = _mapper.Map<TUserRolesDto>(userAndRole);
+            await _identityService.CreateUserRoleAsync(userRolesDto);
+
+            //Set User Password
+            userPasswordDto.password.UserId = createdUser.Id;
+            var userChangePasswordDto = _mapper.Map<TUserChangePasswordDto>(userPasswordDto.password);
+            await _identityService.UserChangePasswordAsync(userChangePasswordDto);
+
+            return CreatedAtAction(nameof(Get), new { id = createdUser.Id }, createdUser);
+        }
     }
 }
 

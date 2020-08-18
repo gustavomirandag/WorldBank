@@ -1,5 +1,6 @@
 ﻿using System;
 using WorldBank.App.Application;
+using WorldBank.App.UI.CrossPlatformApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,8 +14,8 @@ namespace WorldBank.App.UI.CrossPlatformApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
             AppService = new ApplicationService();
+            MainPage = new NavigationPage(new SignInPage());
         }
 
         protected override void OnStart()
