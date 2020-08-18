@@ -23,6 +23,7 @@ namespace WorldBank.Microservices.TransactionMicroservice.Api.Controllers
         }
 
         // GET api/TransactionsController/walletId
+        [Authorize(Roles ="AccountHolder")]
         [HttpGet("{walletId}")]
         public IEnumerable<Transaction> Get(Guid walletId)
         {

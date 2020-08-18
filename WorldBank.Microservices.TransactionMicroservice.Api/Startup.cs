@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,11 +29,23 @@ namespace WorldBank.Microservices.TransactionMicroservice.Api
         {
             services.AddControllers();
             services.AddScoped<ITransactionService, TransactionService>();
+
+            services.AddAuthorization();
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "https://worldbank-gustavo-iam-microservice-identity.azurewebsites.net";
+                    options.RequireHttpsMetadata = false;
+                    options.ApiName = "TransactionMicroservice_ResourceApi";
+
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
