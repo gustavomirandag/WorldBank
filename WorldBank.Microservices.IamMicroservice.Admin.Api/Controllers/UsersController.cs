@@ -299,6 +299,7 @@ namespace WorldBank.Microservices.IamMicroservice.Admin.Api.Controllers
                 return BadRequest(_errorResources.CannotSetId());
             }
 
+            //Create a new User
             var (identityResult, userId) = await _identityService.CreateUserAsync(userPasswordDto.user);
             var createdUser = await _identityService.GetUserAsync(userId.ToString());
 
@@ -307,7 +308,6 @@ namespace WorldBank.Microservices.IamMicroservice.Admin.Api.Controllers
             var userAndRole = new UserRoleApiDto<TKey>();
             userAndRole.UserId = createdUser.Id;
             userAndRole.RoleId = role.Id;
-
             var userRolesDto = _mapper.Map<TUserRolesDto>(userAndRole);
             await _identityService.CreateUserRoleAsync(userRolesDto);
 

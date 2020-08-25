@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using WorldBank.Microservices.TransactionMicroservice.Domain.AggregatesModel.Tra
 
 namespace WorldBank.Microservices.TransactionMicroservice.Api.Controllers
 {
+    [Authorize(Roles ="AccountHolder")]
     [Route("api/[controller]")]
     [ApiController]
     public class TransactionsController : ControllerBase
@@ -23,7 +25,6 @@ namespace WorldBank.Microservices.TransactionMicroservice.Api.Controllers
         }
 
         // GET api/TransactionsController/walletId
-        [Authorize(Roles ="AccountHolder")]
         [HttpGet("{walletId}")]
         public IEnumerable<Transaction> Get(Guid walletId)
         {

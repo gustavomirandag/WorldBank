@@ -7,7 +7,7 @@ namespace WorldBank.Microservices.WalletMicroservice.Domain.AggregatesModel.Wall
     public class Wallet
     {
         public Guid Id { get; set; }
-        public Guid ClientId { get; set; }
+        public Guid AccountHolderId { get; set; }
         public Amount Amount { get; set; }
     }
 }

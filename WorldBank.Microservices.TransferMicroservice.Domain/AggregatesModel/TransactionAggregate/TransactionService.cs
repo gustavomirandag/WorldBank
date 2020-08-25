@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using WorldBank.Microservices.TransactionMicroservice.Domain.AggregatesModel.TransferAggregate;
 using WorldBank.Microservices.WalletMicroservice.Domain.AggregatesModel.WalletAggregate;
 
@@ -11,6 +12,13 @@ namespace WorldBank.Microservices.TransactionMicroservice.Domain.AggregatesModel
     /// </summary>
     public class TransactionService : ITransactionService
     {
+        private ITransactionRepository transactionRepository;
+
+        public TransactionService(ITransactionRepository transactionRepository)
+        {
+            this.transactionRepository = transactionRepository;
+        }
+
         //Servicos de Dominio
         public IEnumerable<Transaction> GetWalletStatement(Guid walletId)
         {
@@ -74,6 +82,62 @@ namespace WorldBank.Microservices.TransactionMicroservice.Domain.AggregatesModel
 
 
             return statement;
+        }
+
+        public async Task<bool> WalletDepositAsync(Guid walletId, Amount amount)
+        {
+            Transaction transaction = new Transaction();
+            transaction.DateTime = DateTime.Now;
+            transaction.Id = Guid.NewGuid();
+
+            var action = new WalletAction();
+            action.WalletId = walletId;
+            action.ActionType = WalletActionType.Credit;
+            action.Amount = amount;
+
+            transaction.AddAction(action);
+
+            await transactionRepository.CreateAsync(transaction);
+            return await transactionRepository.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> WalletTransferAsync(Guid originWalletId, Guid destinyWalletId, Amount amount)
+        {
+            var transaction = new Transaction();
+            transaction.DateTime = DateTime.Now;
+            transaction.Id = Guid.NewGuid();
+
+            var action = new WalletAction();
+            action.WalletId = originWalletId;
+            action.ActionType = WalletActionType.Debit;
+            action.Amount = amount;
+            transaction.AddAction(action);
+
+            action = new WalletAction();
+            action.WalletId = destinyWalletId;
+            action.ActionType = WalletActionType.Credit;
+            action.Amount = amount;
+            transaction.AddAction(action);
+
+            await transactionRepository.CreateAsync(transaction);
+            return await transactionRepository.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> WalletWithdrawAsync(Guid walletId, Amount amount)
+        {
+            Transaction transaction = new Transaction();
+            transaction.DateTime = DateTime.Now;
+            transaction.Id = Guid.NewGuid();
+
+            var action = new WalletAction();
+            action.WalletId = walletId;
+            action.ActionType = WalletActionType.Debit;
+            action.Amount = amount;
+
+            transaction.AddAction(action);
+
+            await transactionRepository.CreateAsync(transaction);
+            return await transactionRepository.SaveChangesAsync() > 0;
         }
     }
 }
